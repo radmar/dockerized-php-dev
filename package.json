@@ -3,7 +3,7 @@
       "name": "stefanorg/dockerized-php-dev",
       "version": "0.1",
       "source": {
-        "url": "https://github.com/stefanorg/dockerized-php",
+        "url": "https://github.com/stefanorg/dockerized-php-dev",
         "type": "git",
         "reference": "master"
       }
