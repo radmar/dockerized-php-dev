@@ -1,0 +1,11 @@
+{
+  "package": {
+      "name": "stefanorg/dockerized-php-dev",
+      "version": "0.1",
+      "source": {
+        "url": "https://github.com/stefanorg/dockerized-php",
+        "type": "git",
+        "reference": "master"
+      }
+  }
+}
