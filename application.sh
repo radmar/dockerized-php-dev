@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# A control-script for managing the docker-infrastructure components for Magento
+# A control-script for managing the docker-infrastructure components
 
 # The first parameter is the action name
 action=$1
@@ -196,8 +196,7 @@ case "$action" in
     *)
     echo "usage : $0 start|stop|restart|status|stats|composer|enter|destroy
 
-  start      Starts the docker containers (and triggers the
-             installation if magento is not yet installed)
+  start      Starts the docker containers
   stop       Stops all docker containers
   restart    Restarts all docker containers
   status     Prints the status of all docker containers
