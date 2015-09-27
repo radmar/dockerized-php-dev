@@ -1,0 +1,6 @@
+{
+  "name": "stefanorg/dockerized-php-dev",
+  "description": "Dockerized php dev with zray",
+  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/stefanorg/dockerized-php-dev"
+}

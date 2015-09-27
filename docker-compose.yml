@@ -1,0 +1,36 @@
+shell:
+  build: docker-images/installer
+  working_dir: /var/www/html
+  entrypoint: ["/bin/bash"]
+  stdin_open: true
+  tty: true
+  volumes_from:
+    - data
+  # volumes:
+  #   - ./src:/var/www/html
+    # - /root/.ssh:/root/.ssh
+
+data:
+  build: docker-images/data
+  volumes:
+    - ./src:/var/www/html
+
+php:
+  build: docker-images/php/5.6-dev
+  links:
+    - "mysql:mysql"
+  volumes_from:
+    - data
+  ports:
+    - "80:80"
+    #zray management port
+    - "10081:10081"
+
+mysql:
+  image: mysql
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: 123
+  # volumes_from:
+  #   - data
