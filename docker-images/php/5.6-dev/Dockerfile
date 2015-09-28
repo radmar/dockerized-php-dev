@@ -23,6 +23,8 @@ RUN buildDeps=" \
     pdo_mysql \
     soap \
     zip \
+    opcache \
+    json \
     && apt-get update -qy \
     && apt-get install -qy git-core \
                            wget \
@@ -57,6 +59,14 @@ COPY zray.ini /usr/local/etc/php/conf.d/zray.ini
 COPY zray-ui.conf /etc/apache2/sites-available/zray-ui.conf
 
 RUN a2ensite zray-ui.conf
+
+########################
+#Zray Plugins
+########################
+#opcache
+RUN wget -O /tmp/zray-opcache-plugin.zip https://api-plugins.zend.com/download.php?id=121 \
+    && unzip /tmp/zray-opcache-plugin.zip -d /opt/zray/runtime/var/plugins/
+    && rm -f /tmp/zray-opcache-plugin.zip
 
 ########################
 # custom configurations
