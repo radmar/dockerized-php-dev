@@ -1,36 +1,52 @@
+workspace:
+  build: docker-images/data
+  extends:
+    file: docker-compose.local.yml
+    service: workspace_container
+
 shell:
   build: docker-images/installer
-  working_dir: /var/www/html
-  entrypoint: ["/bin/bash"]
-  stdin_open: true
-  tty: true
+  privileged: true
+  command: /bin/zsh
+  user: dockerdev
+  # links:
+  #     - mysql
   volumes_from:
-    - data
-  # volumes:
-  #   - ./src:/var/www/html
-    # - /root/.ssh:/root/.ssh
+      - workspace
+  environment:
+      # USER ID of your host user default to 1000 (boot2docker)
+      DEV_UID: 502
+      # GID of your host user default to 20 (boot2docker)
+      DEV_GID: 20
 
-data:
-  build: docker-images/data
-  volumes:
-    - ./src:/var/www/html
+mysql:
+  image: mysql:latest
+  ports:
+    - "3306:3306"
+  volumes_from:
+    - workspace
+  environment:
+    MYSQL_DATABASE: appdb
+    MYSQL_USER: app_dbuser
+    MYSQL_PASSWORD: app_dbpwd
+    MYSQL_ROOT_PASSWORD: MYROOTPWD
 
 php:
   build: docker-images/php/5.6-dev
+  ports:
+      #web port
+      - "80:80"
+      #zray port
+      - "10081:10081"
   links:
-    - "mysql:mysql"
+      - mysql
   volumes_from:
-    - data
-  ports:
-    - "80:80"
-    #zray management port
-    - "10081:10081"
-
-mysql:
-  image: mysql
-  ports:
-    - "3306:3306"
+      - workspace
+  privileged: true
   environment:
-    MYSQL_ROOT_PASSWORD: 123
-  # volumes_from:
-  #   - data
+      # USER ID of your host user default to 1000 (boot2docker)
+      DEV_UID: 502
+      # GID of your host user default to 20 (boot2docker)
+      DEV_GID: 20
+      BASE_URL: http://namaste.dev.local
+      APPLICATION_ENV: development

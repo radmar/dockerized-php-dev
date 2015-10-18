@@ -46,6 +46,8 @@ XARGS=$(which xargs)
 GREP=$(which grep)
 SED=$(which sed)
 
+DEVUSER=dockerdev
+
 #########################################################################
 # Get the full container name for the given container type (e.g. "php")
 # Arguments:
@@ -97,7 +99,7 @@ executeComposer() {
         return 1
     fi
 
-    "$DOCKER" exec $containerName composer --working-dir="/var/www/html" $@
+    "$DOCKER" exec -u "$DEVUSER" $containerName composer --working-dir="/var/www/html" $@
     return 0
 }
 
@@ -116,7 +118,7 @@ enterContainer() {
         return 1
     fi
 
-    "$DOCKER" exec -ti $containerName bash
+    "$DOCKER" exec -u "$DEVUSER" -ti $containerName bash
     return 0
 }
 

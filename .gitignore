@@ -1,1 +1,3 @@
 !.gitignore
+docker-compose.local.yml
+.DS_Store

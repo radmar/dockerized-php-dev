@@ -17,7 +17,15 @@ Create the Skeleton
 
 * `composer.phar create-project -s dev stefanorg/dockerized-php-dev my-project`
 
-Editing the application
+Editing the docker env config file
 ---
-Once created the project modify the `docker-compose.yml` file as you like and then run
-*  `./application.sh start`
+
+- Copy `docker-compose.local.yml.dist` to `docker-compose.local.yml`
+- Edit:
+  - `docker-compose.local.yml` with your host specific directories
+  - `docker-compose.yml` with your app specific settings
+
+Script
+---
+
+A utility script is provided, run `./container.sh` to see the options
