@@ -1,6 +1,6 @@
 workspace_container:
     volumes:
-      - /Users/stefanorg/lavoro/namaste:/home/dockerdev/app
-      - /Users/stefanorg/.composer:/home/dockerdev/.composer
-      - /Users/stefanorg/.ssh:/root/.ssh
+      - /Users/YOURNAME/workspace/myapp:/home/dockerdev/app
+      - /Users/YOURNAME/.composer:/home/dockerdev/.composer
+      - /Users/YOURNAME/.ssh:/root/.ssh
       - /var/lib/mysq:/var/lib/mysql

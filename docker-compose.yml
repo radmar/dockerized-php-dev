@@ -9,15 +9,13 @@ shell:
   privileged: true
   command: /bin/zsh
   user: dockerdev
-  # links:
-  #     - mysql
   volumes_from:
       - workspace
   environment:
       # USER ID of your host user default to 1000 (boot2docker)
-      DEV_UID: 502
+      # DEV_UID: 502
       # GID of your host user default to 20 (boot2docker)
-      DEV_GID: 20
+      # DEV_GID: 20
 
 mysql:
   image: mysql:latest
@@ -45,8 +43,8 @@ php:
   privileged: true
   environment:
       # USER ID of your host user default to 1000 (boot2docker)
-      DEV_UID: 502
+      # DEV_UID: 502
       # GID of your host user default to 20 (boot2docker)
-      DEV_GID: 20
-      BASE_URL: http://namaste.dev.local
+      # DEV_GID: 20
+      BASE_URL: http://app.dev.local
       APPLICATION_ENV: development
